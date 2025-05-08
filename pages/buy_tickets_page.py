@@ -58,3 +58,23 @@ class BuyTicketPage(BasePage):
     def assert_month_year(self, expected_month, expected_year):
         expect(self.page.locator(self.MONTH_SELECTOR)).to_contain_text(expected_month)
         expect(self.page.locator(self.YEAR_SELECTOR)).to_contain_text(str(expected_year))
+
+    @allure.step("Assert tickets form is ready")
+    def assert_tickets_form_is_ready(self):
+        self.assert_element_is_visible(self.INPUT_FROM)
+
+    @allure.step("Assert city FROM")
+    def assert_city_from_value(self, city):
+        self.assert_input_value(self.INPUT_FROM, city)
+
+    @allure.step("Assert city TO")
+    def assert_city_to_value(self, city):
+        self.assert_input_value(self.INPUT_TO, city)
+
+    @allure.step("Assert DEPARTURE date saved")
+    def assert_departure_date_is_saved(self):
+        self.assert_input_value(self.DEPARTURE_INPUT, self.get_input_value(self.DEPARTURE_INPUT))
+
+    @allure.step("Assert RETURN date saved")
+    def assert_return_date_is_saved(self):
+        self.assert_input_value(self.RETURN_INPUT, self.get_input_value(self.RETURN_INPUT))

@@ -18,12 +18,8 @@ def test_buy_and_cancel_ticket(page, buy_tickets_page):
     buy_tickets_page.assert_text_present_on_page("Online Ticket Office")
     buy_tickets_page.cancel_booking()
 # Validate that all that parameters are saved
-    buy_tickets_page.assert_element_is_visible(buy_tickets_page.INPUT_FROM)
-    buy_tickets_page.assert_input_value(buy_tickets_page.INPUT_FROM, "Lagos")
-    buy_tickets_page.assert_input_value(buy_tickets_page.INPUT_TO, "Porto Campanha")
-    buy_tickets_page.assert_input_value(
-        buy_tickets_page.DEPARTURE_INPUT, buy_tickets_page.get_input_value(buy_tickets_page.DEPARTURE_INPUT)
-    )
-    buy_tickets_page.assert_input_value(
-        buy_tickets_page.RETURN_INPUT, buy_tickets_page.get_input_value(buy_tickets_page.RETURN_INPUT)
-    )
+    buy_tickets_page.assert_tickets_form_is_ready()
+    buy_tickets_page.assert_city_from_value("Lagos")
+    buy_tickets_page.assert_city_to_value("Porto Campanha")
+    buy_tickets_page.assert_departure_date_is_saved()
+    buy_tickets_page.assert_return_date_is_saved()
