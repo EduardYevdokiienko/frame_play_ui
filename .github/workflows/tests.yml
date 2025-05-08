@@ -1,0 +1,32 @@
+name: Tests and Allure
+
+on: [push, pull_request]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    name: Pytest with Allure
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install allure-pytest
+
+      - name: Run Pytest with Allure
+        run: |
+          pytest --alluredir=allure-results
+
+      - name: Upload Allure Results (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
