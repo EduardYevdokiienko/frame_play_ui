@@ -12,6 +12,7 @@ def page():
     browser.close()
     playwright.stop()
 
+
 @pytest.fixture()
 def buy_tickets_page(page):
     return BuyTicketPage(page)
