@@ -1,0 +1,22 @@
+
+               Datavant Take-Home Assessment — My Thoughts and Feedback
+
+                2. What Felt Off in Terms of Functionality and UX
+
+- The DOM structure felt messy and inconsistent — finding reliable locators wasn’t easy at all.
+- Some elements on the page share the same `id`, which is not only against HTML standards but also
+breaks automation — you don’t know which one is actually being selected.
+- The calendar widget was the trickiest part. It includes hidden days from other months that still
+match the selectors, which makes date selection unreliable.
+- There’s no unified approach to using attributes — sometimes it’s `title`, sometimes `name`, sometimes
+nothing at all. Because of that, it’s hard to use CSS selectors or Playwright’s built-in queries like
+`getByRole` or `getByLabel`.
+
+                3. Suggestions to Make Automation Easier
+
+- Ideally, every interactive element should have a unique `id`. That would make automation way easier
+and more stable.
+- Make sure all `id`s are truly unique — especially in forms and the calendar.
+- Use a consistent naming strategy for attributes like `title`, `name`, and `class` to avoid confusion.
+- Fix the calendar so only the visible/selectable dates are actually present in the active DOM.
+- Even better, consider adding attributes like `data-testid` or `data-qa` specifically for test automation.
